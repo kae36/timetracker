@@ -1,0 +1,36 @@
+<% if @project.errors.any? %>
+	<div id="errors">
+		<p>Please correct the following <%= pluralize(@project.errors.count, "error") %>:</p>
+		<ul>
+			<% @project.errors.full_messages.each do |msg| %>
+			<li><%= msg %></li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>
+<%= form_for(@project) do |p| %>
+	<div>
+		<%= p.label :name, 'Project Name' %>
+		<%= p.text_field :name %>
+	</div>
+	<div>
+		<%= p.label :slug, 'Short Alias Name' %>
+		<%= p.text_field :slug %>
+	</div>
+   <div>
+		<%= p.label :default_rate, 'Default Rate' %>
+		<%= p.text_field :default_rate %>
+	</div>
+	<div>
+		<%= p.label :company_id %>
+    <%= p.collection_select(:company_id, Company.all, :id, :name, prompt: true) %>
+  </div>
+  <div>
+  	<%= p.label :user_id %>
+  	<%= p.collection_select(:user_id, User.all.order('lname, fname'), :id, :to_s, prompt: true) %>
+  </div>
+	<div>
+		<%= p.submit @project.new_record? ? "Create Project" : "Update Project" %>
+	</div>
+<% end %>
+

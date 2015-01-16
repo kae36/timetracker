@@ -1,0 +1,9 @@
+Project Updated
+=========================================================
+
+Project Name: <%= @project.name %>
+Slug: <%= @project.slug %>
+Default Rate: <%= @project.default_rate %>
+Company: <%= @project.company.name %>
+User: <%= @project.user.to_s %>
+Changed At: <%= @project.updated_at.strftime('%m/%d/%Y %I:%M %p') %>

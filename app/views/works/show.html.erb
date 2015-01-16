@@ -1,0 +1,15 @@
+<h1>Work Record <%= @work.id %></h1>
+
+<p><%= link_to 'Edit Work', edit_work_path(@work) %></p>
+
+<p>Project <%= @work.project.name %></p>
+<p>Worker <%= @work.user.fname %> <%= @work.user.lname %></p>
+<p>Date Time Performed <%= @work.datetimeperformed %></p>
+<p>Hours Worked <%= @work.hours %></p>
+<% if @work.doc %>
+	<p>Document: <%= link_to @work.doc, "/uploads/#{@work.doc}", :target => "_blank" %></p>
+<% end %>
+
+<% content_for :aside do %>
+	<% render 'sidebar' %>
+<% end %>
